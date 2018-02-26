@@ -38,12 +38,24 @@ All methods have an optional final `timeout` argument that defaults to 3 seconds
 
 ### `.get(uuid[, options][, timeout])`
 
-Get a list by UUID. Options are for the `.mget()` method of `n-es-client`.
+Get a list by UUID.
 
 #### Example
 
 ```js
-es.get('520ddb76-e43d-11e4-9e89-00144feab7de', { fields: ['id', 'title'] })
+lists.get('520ddb76-e43d-11e4-9e89-00144feab7de', {
+    fields: ['id', 'title']
+})
+```
+
+### `.for(listType, conceptID[, options][, timeout])`
+
+Get a curated list for a concept.
+
+```js
+lists.get('TopStories', 'c91b1fad-1097-468b-be82-9a8ff717d54c', {
+    fields: ['id', 'title']
+});
 ```
 
 [1]: https://developer.ft.com/

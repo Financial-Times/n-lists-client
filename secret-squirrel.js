@@ -22,7 +22,8 @@ module.exports = {
 			'cd7ec1ae-06a3-11e8-9650-9c0ad2d7c5b5',
 			'585f99b6-1887-11e8-9376-4a6390addb44',
 			'4b29826e-18de-11e8-9376-4a6390addb44',
-			'25fa04ac-1a08-11e8-aaca-4574d7dabfb6'
+			'25fa04ac-1a08-11e8-aaca-4574d7dabfb6',
+			'c91b1fad-1097-468b-be82-9a8ff717d54c'
 		]
 	}
 };

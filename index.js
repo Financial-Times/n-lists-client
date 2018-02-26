@@ -1,3 +1,4 @@
 module.exports = {
-	get: require('./lib/get')
+	for: require('./lib/for'),
+	get: require('./lib/get'),
 };
