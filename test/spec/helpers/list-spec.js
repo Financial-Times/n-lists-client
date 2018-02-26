@@ -3,8 +3,8 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const nock = require('nock');
 
-const fixtureLists = require('../fixtures/list-found.json');
-const fixtureContent = require('../fixtures/elastic-mget.json');
+const fixtureLists = require('../../fixtures/list-found.json');
+const fixtureContent = require('../../fixtures/elastic-mget.json');
 
 const sandbox = sinon.sandbox.create();
 
@@ -14,13 +14,15 @@ const stubs = {
 	}
 };
 
-const subject = proxyquire('../../lib/get', {
+const subject = proxyquire('../../../lib/helpers/fetch-list', {
 	'@financial-times/n-es-client': stubs.client
 });
 
 const LIST_ID = '520ddb76-e43d-11e4-9e89-00144feab7de';
 
-describe('Get', () => {
+const ENDPOINT = `lists/${LIST_ID}`;
+
+describe('helpers/fetch-list', () => {
 	afterEach(() => {
 		nock.isDone();
 		nock.cleanAll();
@@ -38,7 +40,7 @@ describe('Get', () => {
 		});
 
 		it('accepts a fields parameter', () => (
-			subject(LIST_ID, { fields: ['id', 'title'] }).then(() => {
+			subject(ENDPOINT, { fields: ['id', 'title'] }).then(() => {
 				sinon.assert.calledWith(
 					stubs.client.mget,
 					sinon.match.array,
@@ -66,13 +68,13 @@ describe('Get', () => {
 		});
 
 		it('returns an object', () => (
-			subject(LIST_ID).then((result) => {
+			subject(ENDPOINT).then((result) => {
 				expect(result).to.include.keys('id', 'title', 'items', 'layoutHint');
 			})
 		));
 
 		it('appends content items', () => (
-			subject(LIST_ID).then((result) => {
+			subject(ENDPOINT).then((result) => {
 				result.items.forEach((item) => {
 					expect(item).to.include.keys('id', 'url', 'title', 'publishedDate');
 				});
@@ -91,7 +93,7 @@ describe('Get', () => {
 		});
 
 		it('throws an HTTP error', () => (
-			subject(LIST_ID)
+			subject(ENDPOINT)
 				.then((result) => {
 					expect(result).to.equal('This should never run');
 				})
@@ -113,7 +115,7 @@ describe('Get', () => {
 		});
 
 		it('returns the underlying error', () => (
-			subject(LIST_ID)
+			subject(ENDPOINT)
 				.then((result) => {
 					expect(result).to.equal('This should never run');
 				})
