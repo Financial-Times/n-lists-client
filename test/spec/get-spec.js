@@ -1,4 +1,5 @@
 const proxyquire = require('proxyquire');
+const { expect } = require('chai');
 const sinon = require('sinon');
 
 const sandbox = sinon.sandbox.create();
@@ -11,6 +12,8 @@ const subject = proxyquire('../../lib/get', {
 	'./helpers/fetch-list': stubs.fetchList
 });
 
+const LIST_ID = '520ddb76-e43d-11e4-9e89-00144feab7de';
+
 describe('lib/get', () => {
 	beforeEach(() => {
 		stubs.fetchList.resolves();
@@ -20,32 +23,21 @@ describe('lib/get', () => {
 		sandbox.reset();
 	});
 
+	it('rejects when the given list ID is not a valid UUID', () => (
+		subject('123')
+			.then(() => {
+				throw new Error('This should not be called');
+			})
+			.catch((error) => {
+				expect(error.message).to.match(/Invalid list ID/);
+			})
+	));
+
 	it('constructs the correct endpoint', () => (
-		subject(123).then(() => {
+		subject(LIST_ID).then(() => {
 			sinon.assert.calledWithMatch(
 				stubs.fetchList,
-				'lists/123'
-			);
-		})
-	));
-
-	it('passes options through', () => (
-		subject(123, { option: 'value' }).then(() => {
-			sinon.assert.calledWithMatch(
-				stubs.fetchList,
-				sinon.match.string,
-				sinon.match({ option: 'value' })
-			);
-		})
-	));
-
-	it('passes timeout through', () => (
-		subject(123, undefined, 5000).then(() => {
-			sinon.assert.calledWithMatch(
-				stubs.fetchList,
-				sinon.match.string,
-				sinon.match.undefined,
-				5000
+				`lists/${LIST_ID}`
 			);
 		})
 	));

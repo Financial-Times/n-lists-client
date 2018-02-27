@@ -36,9 +36,9 @@ All methods have an optional `options` argument that accepts a hash of option pr
 
 All methods have an optional final `timeout` argument that defaults to 3 seconds.
 
-### `.get(uuid[, options][, timeout])`
+### `.get(listID[, options][, timeout])`
 
-Get a list by UUID.
+Get a list by list ID (which must be a valid UUID.)
 
 #### Example
 
@@ -50,7 +50,7 @@ lists.get('520ddb76-e43d-11e4-9e89-00144feab7de', {
 
 ### `.for(listType, conceptID[, options][, timeout])`
 
-Get a curated list for a concept.
+Get a curated list for a concept. Must be a known list type.
 
 ```js
 lists.get('TopStories', 'c91b1fad-1097-468b-be82-9a8ff717d54c', {

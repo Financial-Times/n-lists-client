@@ -39,25 +39,4 @@ describe('lib/for', () => {
 			);
 		})
 	));
-
-	it('passes options through', () => (
-		subject('OpinionAnalysis', 456, { option: 'value' }).then(() => {
-			sinon.assert.calledWithMatch(
-				stubs.fetchList,
-				sinon.match.string,
-				sinon.match({ option: 'value' })
-			);
-		})
-	));
-
-	it('passes timeout through', () => (
-		subject('SpecialReports', 789, undefined, 5000).then(() => {
-			sinon.assert.calledWithMatch(
-				stubs.fetchList,
-				sinon.match.string,
-				sinon.match.undefined,
-				5000
-			);
-		})
-	));
 });
