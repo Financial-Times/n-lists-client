@@ -46,12 +46,27 @@ describe('lib/helpers/fetch-list', () => {
 					sinon.match.number
 				);
 
-				const options = stubs.client.mget.lastCall.args[0];
-
-				options.forEach((option) => {
-					expect(option._id).to.match(/^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}$/);
-					expect(option._source).to.deep.equal([ 'id', 'title' ]);
-				});
+				sinon.assert.calledWith(
+					stubs.client.mget,
+					sinon.match([
+						{
+							_id: '44558030-1ae8-11e8-aaca-4574d7dabfb6',
+							_source: [ 'id', 'title' ]
+						},
+						{
+							_id: '90c0f8e8-17fd-11e8-9e9c-25c814761640',
+							_source: [ 'id', 'title' ]
+						},
+						{
+							_id: 'fbc63376-1ab2-11e8-aaca-4574d7dabfb6',
+							_source: [ 'id', 'title' ]
+						},
+						{
+							_id: '56dbd2d8-1a2d-11e8-aaca-4574d7dabfb6',
+							_source: [ 'id', 'title' ]
+						}
+					])
+				);
 			})
 		));
 	});

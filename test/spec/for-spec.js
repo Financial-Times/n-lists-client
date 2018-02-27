@@ -33,7 +33,7 @@ describe('lib/for', () => {
 
 	it('constructs the correct endpoint', () => (
 		subject('TopStories', 123).then(() => {
-			sinon.assert.calledWithMatch(
+			sinon.assert.calledWith(
 				stubs.fetchList,
 				'lists?curatedTopStoriesFor=123'
 			);

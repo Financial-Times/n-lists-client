@@ -35,7 +35,7 @@ describe('lib/get', () => {
 
 	it('constructs the correct endpoint', () => (
 		subject(LIST_ID).then(() => {
-			sinon.assert.calledWithMatch(
+			sinon.assert.calledWith(
 				stubs.fetchList,
 				`lists/${LIST_ID}`
 			);
