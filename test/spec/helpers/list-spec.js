@@ -10,7 +10,7 @@ const sandbox = sinon.sandbox.create();
 
 const stubs = {
 	client: {
-		mget: sinon.stub()
+		mget: sandbox.stub()
 	}
 };
 
@@ -22,7 +22,7 @@ const LIST_ID = '520ddb76-e43d-11e4-9e89-00144feab7de';
 
 const ENDPOINT = `lists/${LIST_ID}`;
 
-describe('helpers/fetch-list', () => {
+describe('lib/helpers/fetch-list', () => {
 	afterEach(() => {
 		nock.isDone();
 		nock.cleanAll();
@@ -31,9 +31,8 @@ describe('helpers/fetch-list', () => {
 
 	context('Accepts options', () => {
 		beforeEach(() => {
-			nock('https://api.ft.com')
-				.get(`/lists/${LIST_ID}`)
-				.query(true)
+			nock('https://api.ft.com/')
+				.get('/' + ENDPOINT)
 				.reply(200, fixtureLists);
 
 			stubs.client.mget.resolves(fixtureContent);
@@ -60,8 +59,7 @@ describe('helpers/fetch-list', () => {
 	context('Response - list found', () => {
 		beforeEach(() => {
 			nock('https://api.ft.com')
-				.get(`/lists/${LIST_ID}`)
-				.query(true)
+				.get('/' + ENDPOINT)
 				.reply(200, fixtureLists);
 
 			stubs.client.mget.resolves(fixtureContent);
@@ -85,8 +83,7 @@ describe('helpers/fetch-list', () => {
 	context('Response - list not found', () => {
 		beforeEach(() => {
 			nock('https://api.ft.com')
-				.get(`/lists/${LIST_ID}`)
-				.query(true)
+				.get('/' + ENDPOINT)
 				.reply(404);
 
 			stubs.client.mget.resolves(fixtureContent);
@@ -107,8 +104,7 @@ describe('helpers/fetch-list', () => {
 	context('Response - fetch items failure', () => {
 		beforeEach(() => {
 			nock('https://api.ft.com')
-				.get(`/lists/${LIST_ID}`)
-				.query(true)
+				.get('/' + ENDPOINT)
 				.reply(200, fixtureLists);
 
 			stubs.client.mget.rejects(new Error('Oh dear'));
