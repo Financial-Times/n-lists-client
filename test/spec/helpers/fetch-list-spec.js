@@ -42,30 +42,32 @@ describe('lib/helpers/fetch-list', () => {
 			subject(ENDPOINT, { fields: ['id', 'title'] }).then(() => {
 				sinon.assert.calledWith(
 					stubs.client.mget,
-					sinon.match.array,
+					sinon.match.object,
 					sinon.match.number
 				);
 
 				sinon.assert.calledWith(
 					stubs.client.mget,
-					sinon.match([
-						{
-							_id: '44558030-1ae8-11e8-aaca-4574d7dabfb6',
-							_source: [ 'id', 'title' ]
-						},
-						{
-							_id: '90c0f8e8-17fd-11e8-9e9c-25c814761640',
-							_source: [ 'id', 'title' ]
-						},
-						{
-							_id: 'fbc63376-1ab2-11e8-aaca-4574d7dabfb6',
-							_source: [ 'id', 'title' ]
-						},
-						{
-							_id: '56dbd2d8-1a2d-11e8-aaca-4574d7dabfb6',
-							_source: [ 'id', 'title' ]
-						}
-					])
+					sinon.match({
+						docs: [
+							{
+								_id: '44558030-1ae8-11e8-aaca-4574d7dabfb6',
+								_source: [ 'id', 'title' ]
+							},
+							{
+								_id: '90c0f8e8-17fd-11e8-9e9c-25c814761640',
+								_source: [ 'id', 'title' ]
+							},
+							{
+								_id: 'fbc63376-1ab2-11e8-aaca-4574d7dabfb6',
+								_source: [ 'id', 'title' ]
+							},
+							{
+								_id: '56dbd2d8-1a2d-11e8-aaca-4574d7dabfb6',
+								_source: [ 'id', 'title' ]
+							}
+						]
+					})
 				);
 			})
 		));
