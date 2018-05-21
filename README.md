@@ -1,6 +1,6 @@
 # n-lists-client
 
-[![CircleCI](https://circleci.com/gh/Financial-Times/n-lists-client.svg?style=svg)](https://circleci.com/gh/Financial-Times/n-lists-client) [![Coverage Status](https://coveralls.io/repos/github/Financial-Times/n-lists-client/badge.svg?branch=master)](https://coveralls.io/github/Financial-Times/n-lists-client?branch=master)
+[![CircleCI](https://img.shields.io/circleci/project/github/Financial-Times/n-lists-client/master.svg)](https://circleci.com/gh/Financial-Times/n-lists-client) ![Coveralls Coverage](https://img.shields.io/coveralls/github/Financial-Times/n-lists-client/master.svg) [![NPM version](https://img.shields.io/npm/v/@financial-times/n-lists-client.svg)](https://www.npmjs.com/package/@financial-times/n-lists-client)
 
 A very thin wrapper around the [Content API][1] and [n-es-client][2] to search and retrieve content from lists in a simple, DRY manner.
 
