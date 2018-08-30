@@ -118,6 +118,22 @@ describe('lib/helpers/fetch-list', () => {
 		));
 	});
 
+	context('Response - list without items', () => {
+		beforeEach(() => {
+			const fixtureWithoutItems = { ...fixtureLists };
+			delete fixtureWithoutItems.items;
+			nock('https://api.ft.com')
+				.get('/' + ENDPOINT)
+				.reply(200, fixtureWithoutItems);
+		});
+
+		it('returns an object without items', () => (
+			subject(ENDPOINT).then((result) => {
+				expect(result).to.include.keys('id', 'title', 'layoutHint');
+			})
+		));
+	});
+
 	context('Response - fetch items failure', () => {
 		beforeEach(() => {
 			nock('https://api.ft.com')
