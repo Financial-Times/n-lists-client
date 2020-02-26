@@ -35,7 +35,7 @@ describe('lib/for', () => {
 		subject('TopStories', 123).then(() => {
 			sinon.assert.calledWith(
 				stubs.fetchList,
-				'lists?curatedTopStoriesFor=123'
+				'lists?listType=TopStories&conceptUUID=123'
 			);
 		})
 	));
