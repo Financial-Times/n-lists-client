@@ -11,7 +11,8 @@
   "dependencies": {
     "@financial-times/n-es-client": "^1.6.1",
     "@financial-times/n-logger": "^6.0.0",
-    "http-errors": "^1.6.2"
+    "http-errors": "^1.6.2",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@financial-times/n-gage": "^5.1.2",
