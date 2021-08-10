@@ -2,7 +2,7 @@ const proxyquire = require('proxyquire');
 const { expect } = require('chai');
 const sinon = require('sinon');
 
-const sandbox = sinon.sandbox.create();
+const sandbox = sinon.createSandbox();
 
 const stubs = {
 	fetchList: sandbox.stub()
