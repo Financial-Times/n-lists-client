@@ -23,7 +23,6 @@ const response = (value) => ({
 const subject = proxyquire('../../../lib/helpers/fetch-capi', {
 	'node-fetch': stubs.nodeFetch,
 	'@financial-times/n-logger': {
-		'@global': true,
 		default: stubs.nLogger,
 	},
 });
@@ -119,7 +118,6 @@ describe('lib/helpers/fetch-capi', () => {
 					statusCode: status,
 					url: `https://api.ft.com/${url}`,
 					uuid: listUUID,
-					statusText
 				});
 			});
 		});
