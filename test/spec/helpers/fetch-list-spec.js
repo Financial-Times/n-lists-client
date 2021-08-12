@@ -6,7 +6,7 @@ const nock = require('nock');
 const fixtureLists = require('../../fixtures/list-found.json');
 const fixtureContent = require('../../fixtures/elastic-mget.json');
 
-const sandbox = sinon.sandbox.create();
+const sandbox = sinon.createSandbox();
 
 const stubs = {
 	client: {
