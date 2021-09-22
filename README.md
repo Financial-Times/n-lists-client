@@ -1,6 +1,6 @@
 # n-lists-client
 
-[![CircleCI](https://img.shields.io/circleci/project/github/Financial-Times/n-lists-client/master.svg)](https://circleci.com/gh/Financial-Times/n-lists-client) ![Coveralls Coverage](https://img.shields.io/coveralls/github/Financial-Times/n-lists-client/master.svg) [![NPM version](https://img.shields.io/npm/v/@financial-times/n-lists-client.svg)](https://www.npmjs.com/package/@financial-times/n-lists-client)
+[![CircleCI](https://img.shields.io/circleci/project/github/Financial-Times/n-lists-client/main.svg)](https://circleci.com/gh/Financial-Times/n-lists-client) ![Coveralls Coverage](https://img.shields.io/coveralls/github/Financial-Times/n-lists-client/main.svg) [![NPM version](https://img.shields.io/npm/v/@financial-times/n-lists-client.svg)](https://www.npmjs.com/package/@financial-times/n-lists-client)
 
 A very thin wrapper around the [Content API][1] and [n-es-client][2] to search and retrieve content from lists in a simple, DRY manner.
 
@@ -43,9 +43,9 @@ Get a list by list ID (which must be a valid UUID.)
 #### Example
 
 ```js
-lists.get('520ddb76-e43d-11e4-9e89-00144feab7de', {
-    fields: ['id', 'title']
-})
+lists.get("520ddb76-e43d-11e4-9e89-00144feab7de", {
+  fields: ["id", "title"],
+});
 ```
 
 ### `.for(listType, conceptID[, options][, timeout])`
@@ -53,8 +53,8 @@ lists.get('520ddb76-e43d-11e4-9e89-00144feab7de', {
 Get a curated list for a concept. Must be a known list type.
 
 ```js
-lists.for('TopStories', 'c91b1fad-1097-468b-be82-9a8ff717d54c', {
-    fields: ['id', 'title']
+lists.for("TopStories", "c91b1fad-1097-468b-be82-9a8ff717d54c", {
+  fields: ["id", "title"],
 });
 ```
 
