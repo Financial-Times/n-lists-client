@@ -5,7 +5,7 @@ const sinon = require('sinon');
 const stubs = {
 	nodeFetch: sinon.stub(),
 	globalFetch: sinon.stub(),
-	nLogger: {
+	logger: {
 		warn: sinon.stub(),
 		info: sinon.stub(),
 	}
@@ -22,8 +22,8 @@ const response = (value) => ({
 
 const subject = proxyquire('../../../lib/helpers/fetch-capi', {
 	'node-fetch': stubs.nodeFetch,
-	'@financial-times/n-logger': {
-		default: stubs.nLogger,
+	'@dotcom-reliability-kit/logger': {
+		default: stubs.logger,
 	},
 });
 
@@ -32,8 +32,8 @@ describe('lib/helpers/fetch-capi', () => {
 	beforeEach(() => {
 		stubs.nodeFetch.reset();
 		stubs.globalFetch.reset();
-		stubs.nLogger.warn.reset();
-		stubs.nLogger.info.reset();
+		stubs.logger.warn.reset();
+		stubs.logger.info.reset();
 		global.fetch = undefined;
 		process.env.API_KEY = fakeAPIKey;
 		stubs.nodeFetch.resolves(response({}));
@@ -113,8 +113,8 @@ describe('lib/helpers/fetch-capi', () => {
 		it('logs the error with WARN level', () => {
 			return subject(url).catch(() => {
 				sinon.assert.calledOnce(stubs.nodeFetch);
-				sinon.assert.calledOnce(stubs.nLogger.warn);
-				expect(stubs.nLogger.warn.getCall(0).args[0]).to.deep.include({
+				sinon.assert.calledOnce(stubs.logger.warn);
+				expect(stubs.logger.warn.getCall(0).args[0]).to.deep.include({
 					statusCode: status,
 					url: `https://api.ft.com/${url}`,
 					uuid: listUUID,
@@ -156,8 +156,8 @@ describe('lib/helpers/fetch-capi', () => {
 		it('logs the error with INFO level', () => {
 			return subject(url).catch(() => {
 				sinon.assert.calledOnce(stubs.nodeFetch);
-				sinon.assert.calledOnce(stubs.nLogger.info);
-				expect(stubs.nLogger.info.getCall(0).args[0]).to.deep.include({
+				sinon.assert.calledOnce(stubs.logger.info);
+				expect(stubs.logger.info.getCall(0).args[0]).to.deep.include({
 					url: `https://api.ft.com/${url}`,
 					uuid: listUUID,
 				});
