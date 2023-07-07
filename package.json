@@ -15,7 +15,7 @@
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
-    "@financial-times/n-gage": "^9.0.0",
+    "@financial-times/n-gage": "^9.0.1",
     "chai": "^4.1.0",
     "coveralls": "^3.0.0",
     "mocha": "^5.2.0",
@@ -26,7 +26,8 @@
     "snyk": "^1.167.2"
   },
   "engines": {
-    "node": "16.x"
+    "node": "16.x || 18.x",
+    "npm": "7.x || 8.x || 9.x"
   },
   "scripts": {
     "prepare": "npx snyk protect || npx snyk protect -d || true"
@@ -39,6 +40,6 @@
     }
   },
   "volta": {
-    "node": "16.14.2"
+    "node": "18.16.1"
   }
 }
