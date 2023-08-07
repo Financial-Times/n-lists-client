@@ -10,7 +10,7 @@
   "homepage": "https://github.com/Financial-Times/n-lists-client",
   "dependencies": {
     "@dotcom-reliability-kit/logger": "^2.2.2",
-    "@financial-times/n-es-client": "3.0.2",
+    "@financial-times/n-es-client": "5.0.0",
     "http-errors": "^1.6.2",
     "node-fetch": "^2.6.1"
   },
