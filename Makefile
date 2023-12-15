@@ -8,7 +8,7 @@ node_modules/@financial-times/n-gage/index.mk:
 
 unit-test:
 	export NODE_ENV=test; \
-	mocha 'test/spec/**/*-spec.js'
+	mocha test
 
 unit-test-coverage:
 	nyc --reporter=$(if $(CIRCLECI),lcovonly,lcov) make unit-test
