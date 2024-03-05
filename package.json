@@ -12,7 +12,7 @@
     "@dotcom-reliability-kit/logger": "^2.2.7",
     "@financial-times/n-es-client": "^5.0.0",
     "http-errors": "^1.6.2",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@dotcom-tool-kit/component": "^4.1.3",
