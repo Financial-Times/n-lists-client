@@ -11,7 +11,7 @@
   "dependencies": {
     "@dotcom-reliability-kit/logger": "^2.2.7",
     "@financial-times/n-es-client": "^5.0.0",
-    "http-errors": "^1.6.2",
+    "http-errors": "^2.0.0",
     "node-fetch": "^2.6.1"
   },
   "devDependencies": {
